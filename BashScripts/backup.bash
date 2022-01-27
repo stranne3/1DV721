@@ -4,7 +4,7 @@
 #
 
 root=$pwd
-dir=$2 		# 2nd argument is the directory to be copied
+dir=$1 		# 1st argument is the directory to be copied
 backupfile="tmp/backup_2022-01-25.tar.gz"
 
 function usage
