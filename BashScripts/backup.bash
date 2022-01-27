@@ -3,8 +3,7 @@
 #
 #
 
-use=$1
-dir=$2 #2nd argument is the directory to be copied
+dir=$2 		# 2nd argument is the directory to be copied
 backupfile="tmp/backup_2022-01-25.tar.gz"
 
 function usage
@@ -16,19 +15,19 @@ function usage
 		"Options:"
 		"--help, -h		Print help."
 	)
-	Printf"%s\\n" "${txt[@]}"
+	Printf "%s\\n" "${txt[@]}"
 }
 
 if [ -f "$dir" ]; then
 	if [ -f "$backupfile" ];  then
-		echo ""$backupfile" exists"
+		echo "$backupfile exists"
 	else
 		touch "$backupfile"
 	fi
 	cp -r "$dir" "$backupfile"
 
 else
-	echo ""$dir" doesn't exist"
+	echo "$dir doesn't exist"
 fi 
 
 while (($#))
