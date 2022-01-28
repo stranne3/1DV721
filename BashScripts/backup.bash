@@ -4,7 +4,8 @@
 #
 
 root=$pwd
-printf "$root"
+printf "%s\\n" "$root"
+
 dir="$pwd/$1" 		# 1st argument is the directory to be copied
 backupfile="tmp/backup_2022-01-25.tar.gz"
 
