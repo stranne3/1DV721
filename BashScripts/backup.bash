@@ -4,8 +4,7 @@
 #
 
 root=($PWD)
-echo cd
-dir=($1)			# 1st argument is the directory to be copied
+dir=($1)			# 1st argument is the path to the directory to be copied
 backupfile="tmp/backup_2022-01-25.tar.gz"
 
 function usage
@@ -32,7 +31,7 @@ if [ -f "$dir" ]; then
 	cp -r "$dir" "$backupfile"
 
 else
-	echo "$dir doesn't exist"
+	echo "$dir doesn't exist, mate"
 fi 
 
 ## Print tips on how to use this script.
