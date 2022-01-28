@@ -3,7 +3,7 @@
 #
 #
 
-root="$pwd"
+root=echo $PWD
 printf "%s\\n" "$root"
 
 dir="$pwd/$1" 		# 1st argument is the directory to be copied
