@@ -3,7 +3,7 @@
 # Viktor Stranne, vs222my
 #
 
-root=($PWD)
+root="~/courses/systemadministration/bashscripts/tmp"
 dir=($1)			# 1st argument is the path to the directory to be copied
 
 
@@ -23,7 +23,8 @@ function usage
 
 if [ -d "$dir" ]; then
 	timestamp=$(date +"%D_%T")
-	echo "$timestamp"
+	filename=$basename $1
+	backupfile="$("$basename" "_" ""$timestamp" ".tar.gz")"
 	touch "$root/$backupfile"
 	printf "%s\\n" "Creating backup file..."
 
