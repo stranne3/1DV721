@@ -29,9 +29,11 @@ if [ -f "$dir" ]; then
 	fi
 
 	cp -r "$dir" "$backupfile"
+	exit 0
 
 else
-	echo "$dir doesn't exist, mate"
+	echo "$dir doesn't exist"
+	exit 1
 fi 
 
 ## Print tips on how to use this script.
@@ -45,5 +47,4 @@ do
 		;;
 	esac
 done 
-
 
