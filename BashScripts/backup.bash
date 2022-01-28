@@ -6,7 +6,7 @@
 root=($PWD)
 printf "%s\n" "this is root: $root" 
 
-dir="$pwd/$1" 		# 1st argument is the directory to be copied
+dir="$root/$1" 		# 1st argument is the directory to be copied
 backupfile="tmp/backup_2022-01-25.tar.gz"
 
 function usage
