@@ -1,12 +1,11 @@
 #!/bin/bash
 # Create a backup for directory <argument> in file "tmp/backup_2022-01-27.tar.gz"
-#
+# Viktor Stranne, vs222my
 #
 
 root=($PWD)
-printf "%s\n" "this is root: $root" 
-
-dir="$root/$1" 		# 1st argument is the directory to be copied
+echo cd
+dir=($1)			# 1st argument is the directory to be copied
 backupfile="tmp/backup_2022-01-25.tar.gz"
 
 function usage
@@ -14,6 +13,7 @@ function usage
 	local txt=(
 		"Usage: backup.bash [OPTION] [argument]"
 		"Copy a file/directory into a foretold file."
+
 		""
 		"Options:"
 		"--help, -h		Print help."
@@ -22,10 +22,11 @@ function usage
 }
 
 if [ -f "$dir" ]; then
-	if [ -f "$backupfile" ];  then
+	if [ -f "$root/$backupfile" ];  then
 		echo "$backupfile exists"
 	else
 		touch "$root/$backupfile"
+		printf "%s\\n" "Creating backup file..."
 	fi
 
 	cp -r "$dir" "$backupfile"
