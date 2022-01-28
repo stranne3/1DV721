@@ -1,18 +1,18 @@
 #!/bin/bash
-# Create a backup for directory <argument> in file "tmp/backup_2022-01-27.tar.gz"
+# Create a backup for directory <argument> in file "/tmp/backup_2022-01-27.tar.gz"
 # Viktor Stranne, vs222my
 #
 
 root=($PWD)
 dir=($1)			# 1st argument is the path to the directory to be copied
-backupfile="tmp/backup_2022-01-25.tar.gz"
+
 
 function usage
 {
 	local txt=(
 		"Usage: backup.bash [OPTION] [argument]"
 		"Copy a file/directory into a foretold file."
-
+		"Argument must be a complete path to directory or file."
 		""
 		"Options:"
 		"--help, -h		Print help."
@@ -20,13 +20,15 @@ function usage
 	Printf "%s\\n" "${txt[@]}"
 }
 
+function dateAndTimstamp()
+{
+	date +"%T"
+}
+
 if [ -d "$dir" ]; then
-	if [ -f "$root/$backupfile" ];  then
-		echo "$backupfile exists"
-	else
-		touch "$root/$backupfile"
-		printf "%s\\n" "Creating backup file..."
-	fi
+	backupfile="tmp/backup" %dateAndTimestamp ".tar.gz"
+	touch "$root/$backupfile"
+	printf "%s\\n" "Creating backup file..."
 
 	cp -r "$dir" "$backupfile"
 	exit 0
