@@ -23,7 +23,7 @@ function usage
 
 if [ -d "$dir" ]; then
 	timestamp=$($date +'%m/%d/%Y')
-	echo timestamp
+	echo $timestamp
 	touch "$root/$backupfile"
 	printf "%s\\n" "Creating backup file..."
 
