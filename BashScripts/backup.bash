@@ -22,7 +22,7 @@ function usage
 
 
 if [ -d "$dir" ]; then
-	timestamp=$(date +"%D_%T")
+	timestamp=$(date -j -f "%d %b %Y_%H:%M:%S")
 	filename=$(basename $1)
 	backupfile=$filename"_"$timestamp".tar.gz"
 	echo "backupfile:::" "$backupfile"
