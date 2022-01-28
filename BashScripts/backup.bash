@@ -24,7 +24,7 @@ function usage
 if [ -d "$dir" ]; then
 	timestamp=$(date +"%D_%T")
 	filename=$basename $1
-	backupfile="$("$basename" "_" ""$timestamp" ".tar.gz")"
+	backupfile=$($basename "_" $timestamp" ".tar.gz")
 	touch "$root/$backupfile"
 	printf "%s\\n" "Creating backup file..."
 
