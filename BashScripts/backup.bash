@@ -4,13 +4,13 @@
 #
 
 root=$pwd
-dir=$1 		# 1st argument is the directory to be copied
+dir="$pwd/$1" 		# 1st argument is the directory to be copied
 backupfile="tmp/backup_2022-01-25.tar.gz"
 
 function usage
 {
 	local txt=(
-		"Usage: backup.bash [OPTION] [argument]>"
+		"Usage: backup.bash [OPTION] [argument]"
 		"Copy a file/directory into a foretold file."
 		""
 		"Options:"
@@ -25,11 +25,14 @@ if [ -f "$dir" ]; then
 	else
 		touch "$root/$backupfile"
 	fi
+	
 	cp -r "$dir" "$backupfile"
 
 else
 	echo "$dir doesn't exist"
 fi 
+
+## Print tips on how to use this script.
 
 while (($#))
 do
