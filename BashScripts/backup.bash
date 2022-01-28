@@ -3,7 +3,7 @@
 #
 #
 
-root=$pwd
+root=echo "$pwd"
 dir="$pwd/$1" 		# 1st argument is the directory to be copied
 backupfile="tmp/backup_2022-01-25.tar.gz"
 
@@ -25,7 +25,7 @@ if [ -f "$dir" ]; then
 	else
 		touch "$root/$backupfile"
 	fi
-	
+
 	cp -r "$dir" "$backupfile"
 
 else
