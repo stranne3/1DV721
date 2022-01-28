@@ -20,13 +20,10 @@ function usage
 	Printf "%s\\n" "${txt[@]}"
 }
 
-function dateAndTimstamp()
-{
-	backupfile="tmp/backup_" date +"%T" ".tar.gz"
-}
 
 if [ -d "$dir" ]; then
-	dateAndTimestamp
+	timestamp=$($date +'%m/%d/%Y')
+	echo timestamp
 	touch "$root/$backupfile"
 	printf "%s\\n" "Creating backup file..."
 
