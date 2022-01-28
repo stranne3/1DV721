@@ -20,7 +20,7 @@ function usage
 	Printf "%s\\n" "${txt[@]}"
 }
 
-if [ -d "$dir" | -f "$dir" ]; then
+if [ -d "$dir" ]; then
 	if [ -f "$root/$backupfile" ];  then
 		echo "$backupfile exists"
 	else
@@ -47,4 +47,3 @@ do
 		;;
 	esac
 done 
-
