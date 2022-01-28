@@ -22,11 +22,11 @@ function usage
 
 function dateAndTimstamp()
 {
-	date +"%T"
+	backupfile="tmp/backup_" date +"%T" ".tar.gz"
 }
 
 if [ -d "$dir" ]; then
-	backupfile="tmp/backup" %dateAndTimestamp ".tar.gz"
+	dateAndTimestamp
 	touch "$root/$backupfile"
 	printf "%s\\n" "Creating backup file..."
 
