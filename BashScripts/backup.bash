@@ -3,7 +3,8 @@
 # Viktor Stranne, vs222my
 # 
 
-start="$date +%s"
+start=$(date +%s.%N)
+
 root="/c/Users/vikto/courses/systemadministration/bashscripts/tmp"
 dir=($1)			# 1st argument is the path to the directory to be copied
 
@@ -21,47 +22,40 @@ function usage
 	Printf "%s\\n" "${txt[@]}"
 }
 
+function timer
+{
+	end=$(date +%s.%N)
+	echo  "To get exact execution time. Bash 'bc' package need to be installed."
+}
+
 if [ -d "$dir" ]; then
 
-
 	timestamp=$(date +"%Y%d%m_%H:%M:%S")
-	filename=$(basename $1)
-	backupfile=$filename"_"$timestamp".tar.gz"
+	backupfile="$(basename $dir)"_"$timestamp".tar.gz""
 
 	####echo "backupfile:::" "$backupfile"
-	touch "$root/$backupfile"
-
-	cp -r "$dir" "$backupfile"
+	touch $root/$backupfile | cp $dir 
+	
 
 
 else
-	echo "'$dir' is not a directory/doesn't exist."
-	end="$date+%s"
-	runtime="$((end-start))"
-	echo "$runtime"
-		
+	echo "'$dir' is not a directory/doesn't exist."	
 	exit 1
 fi 
-
-
 
 ## Print tips on how to use this script.
 
 while (($#))
 do
 	if [ -d "$dir" ]; then
-		end="$date+%s"
-		runtime="$((end-start))"
-		echo "$runtime"
+		timer
 		exit 0
 	fi
 
 	case "$1" in
 		--help | -h)
 			usage
-			end="$date+%s"
-			runtime="$((end-start))"
-			echo "$runtime"
+			timer
 			exit 0
 		;;
 
