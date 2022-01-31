@@ -5,8 +5,8 @@
 
 start=$(date +%s.%N)
 
-root="/c/Users/vikto/courses/systemadministration/bashscripts/tmp"
-dir=($1)			# 1st argument is the path to the directory to be copied
+destination="/c/Users/vikto/courses/systemadministration/bashscripts/tmp"
+backupfiles=($1)			# 1st argument is the path to the directory to be copied
 
 
 function usage
@@ -28,18 +28,19 @@ function timer
 	echo  "To get exact execution time. Bash 'bc' package need to be installed."
 }
 
-if [ -d "$dir" ]; then
+if [ -d "$backupfiles" ]; then
 
-	timestamp=$(date +"%Y%d%m_%H:%M:%S")
-	backupfile="$(basename $dir)"_"$timestamp".tar.gz""
+	timestamp=$(date +"%Y%d%m_%H%M%S")
+	archive_file="$(basename $backupfiles)"_"$timestamp".tgz""
 
-	####echo "backupfile:::" "$backupfile"
-	touch $root/$backupfile | cp $dir 
+	tar czf $destination/$archive_file $backupfiles
+
+	##touch $destination/$backupfile | cp $backupfiles $destination/$archive_file
 	
 
 
 else
-	echo "'$dir' is not a directory/doesn't exist."	
+	echo "'$backupfiles' is not a directory/doesn't exist."	
 	exit 1
 fi 
 
@@ -47,7 +48,7 @@ fi
 
 while (($#))
 do
-	if [ -d "$dir" ]; then
+	if [ -d "$backupfiles" ]; then
 		timer
 		exit 0
 	fi
