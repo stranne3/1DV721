@@ -1,20 +1,21 @@
 #!/bin/bash
-# Create a backup for directory <argument> in file "/tmp/backup_2022-01-27.tar.gz"
+# Create a backup for directory <argument> in file "/bashcripts/tmp/backup_2022-01-27.tar.gz"
 # Viktor Stranne, vs222my
 # 
 
 start=$(date +%s.%N)
 
-destination="/c/Users/vikto/courses/systemadministration/bashscripts/tmp"
-backupfiles=($1)			# 1st argument is the path to the directory to be copied
 
+backupfiles=($1)			# 1st argument is the path to the directory to be copied
+destination=($2)		# Ex. "/c/Users/vikto/courses/systemadministration/bashscripts/tmp"
 
 function usage
 {
 	local txt=(
-		"Usage: backup.bash [OPTION] [argument]"
+		"Usage: backup.bash [OPTION] [file/directory] [destination]"
 		"Copy a file/directory into a foretold file."
-		"Argument must be a complete path to directory or file."
+		"Argument 1 must be a complete path to a directory or a file."
+		"Argument 2 must be a complete path to a directory."
 		""
 		"Options:"
 		"--help, -h		Print help."
@@ -25,7 +26,12 @@ function usage
 function timer
 {
 	end=$(date +%s.%N)
-	echo  "To get exact execution time. Bash 'bc' package need to be installed."
+	if [[ $OSTYPE != "msys"* ]]; then
+		echo $((end-start)) | bc
+
+	else 
+		echo  "To get exact execution time. Bash 'bc' package need to be installed."
+	fi
 }
 
 if [ -d "$backupfiles" ]; then
