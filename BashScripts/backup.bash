@@ -25,8 +25,8 @@ function usage
 
 function timer
 {
-	end=$(date +%s.%N)
-	if [[ $OSTYPE != "msys"* ]]; then
+	end=$(date +%s.%N) 					## Would've worked with $(date +%N) but this solution is more generic imo...
+	if [[ $OSTYPE != "msys"* ]]; then	## Solution above would make this step obsolete.
 		echo $((end-start)) | bc
 
 	else 
@@ -39,11 +39,14 @@ if [ -d "$backupfiles" ]; then
 	timestamp=$(date +"%Y%d%m_%H%M%S")
 	archive_file="$(basename $backupfiles)"_"$timestamp".tgz""
 
-	tar czf $destination/$archive_file $backupfiles
+	if [ -f "$archive_file" ]; then
+		echo "'$archive_file' already exists."
+	
+	else
+		tar czf $destination/$archive_file $backupfiles
+	fi
 
 	##touch $destination/$backupfile | cp $backupfiles $destination/$archive_file
-	
-
 
 else
 	echo "'$backupfiles' is not a directory/doesn't exist."	
