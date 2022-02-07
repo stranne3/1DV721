@@ -2,15 +2,29 @@
 #
 
 URL=$1
-curl $URL > values
-file="/Users/viktorstranne/Documents/GitHub/1DV721/BashScripts/values"
-type=$(file -b "$file")
+
+wget -O newfile.txt $URL
+
+file="/Users/viktorstranne/Documents/GitHub/1DV721/BashScripts/newfile.txt"
+type=$(file -b $file)
 filesize=$(stat -f%z $file)
-echo "Type: " $type "Filesize: " $filesize
+echo "Type: " $type
+echo "Filesize: " $filesize
 
-filecontent=$(</Users/viktorstranne/Documents/GitHub/1DV721/BashScripts/values)
+echo "Words: " 
+wc -w $file
 
+echo "Lines:"
+wc -l $file
 
+echo "Spaces:"
+tr -cd ' ' < $file| wc -c
+
+first=$(head -n 1 $file)
+echo "First line: " "$first"
+
+last=$(tail -n 1 $file)
+echo "Last line: " "$last"
 
 
 
