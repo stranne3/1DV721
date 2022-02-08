@@ -5,26 +5,45 @@ URL=$1
 
 wget -O newfile.txt $URL
 
-file="/Users/viktorstranne/Documents/GitHub/1DV721/BashScripts/newfile.txt"
-type=$(file -b $file)
+file="/Users/viktorstranne/Documents/GitHub/1DV721/BashScripts/newfile"
+type=$(file -b $file | awk '{print $1}')
 filesize=$(stat -f%z $file)
+
 echo "Type: " $type
+
+
 echo "Filesize: " $filesize
 
-echo "Words: " 
-wc -w $file
+case $type in
 
-echo "Lines:"
-wc -l $file
+    ASCII)
+        echo "Words: " 
+        wc -w $file
 
-echo "Spaces:"
-tr -cd ' ' < $file| wc -c
+        echo "Lines:"
+        wc -l $file
 
-first=$(head -n 1 $file)
-echo "First line: " "$first"
+        echo "Spaces:"
+        tr -cd ' ' < $file| wc -c
 
-last=$(tail -n 1 $file)
-echo "Last line: " "$last"
+        first=$(head -1 $file)
+        echo "First line: " "$first"
+
+        last=$(tail -1 $file)
+        echo "Last line: " "$last"
+    ;;
+
+    binary)
+        first =$(head -c 10 $file)
+        echo "First 10 bytes: " "$first"
+
+        last = $(tail -c 10 $file)
+        echo "Last 10 bytes: " "$last"
+    ;;
+esac
+
+open -a safari $1
+
 
 
 
