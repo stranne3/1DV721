@@ -2,8 +2,9 @@
 #
 
 URL=$1
+echo $URL
 
-wget -O newfile.txt $URL
+wget -O newfile $URL
 
 file="/Users/viktorstranne/Documents/GitHub/1DV721/BashScripts/newfile"
 type=$(file -b $file | awk '{print $1}')
@@ -14,33 +15,30 @@ echo "Type: " $type
 
 echo "Filesize: " $filesize
 
-case $type in
+if [[ "$type" == "ASCII" ]]; then
 
-    ASCII)
-        echo "Words: " 
-        wc -w $file
+    echo "Words: " 
+    wc -w $file
 
-        echo "Lines:"
-        wc -l $file
+    echo "Lines:"
+    wc -l $file
 
-        echo "Spaces:"
-        tr -cd ' ' < $file| wc -c
+    echo "Spaces:"
+    tr -cd ' ' < $file| wc -c
 
-        first=$(head -1 $file)
-        echo "First line: " "$first"
+    first=$(head -1 $file)
+    echo "First line: " "$first"
 
-        last=$(tail -1 $file)
-        echo "Last line: " "$last"
-    ;;
+    last=$(tail -1 $file)
+    echo "Last line: " "$last"
 
-    binary)
-        first =$(head -c 10 $file)
-        echo "First 10 bytes: " "$first"
+else
+    first=$(head -c 10 $file)
+    echo "First 10 bytes: " "$first"
 
-        last = $(tail -c 10 $file)
-        echo "Last 10 bytes: " "$last"
-    ;;
-esac
+    last=$(tail -c 10 $file)
+    echo "Last 10 bytes: " "$last"
+fi
 
 open -a safari $1
 
