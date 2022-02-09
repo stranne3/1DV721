@@ -4,6 +4,19 @@
 URL=$1
 echo $URL
 
+function usage
+{
+	local txt=(
+		"Usage: large_files.bash [OPTION]/[File-path]"
+		"Print info of file declared in [Argument 1]."
+		"Argument 1 must be a complete path to a directory or a file."
+		""
+		"Options:"
+		"--help, -h		Print help."
+	)
+	Printf "%s\\n" "${txt[@]}"
+}
+
 wget -O newfile $URL
 
 file="/Users/viktorstranne/Documents/GitHub/1DV721/BashScripts/newfile"
@@ -42,7 +55,15 @@ fi
 
 open -a safari $1
 
-
+while (($#))
+do
+	case "$1" in
+		--help | -h)
+			usage
+			exit 0
+		;;
+	esac
+done 
 
 
 # TODO: The type of the file
