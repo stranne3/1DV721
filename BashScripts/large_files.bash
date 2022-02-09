@@ -26,16 +26,12 @@ find "$path" -printf '%s %p\n' | sort -nr | head -5
 
 ###du -ahx $path | sort -n -r | head -5
 
-
-
 echo "Total size of the largets files: "
 find "$path" -type f -exec ls -l {} \; | awk '{sum += $5} END {print sum}' | sort -nr | head -5 
 
 echo "Total files scanned: "
 find "$path" -type f | wc -l
 exit 0
-
-
 
 else
     echo "$path"  " is not a valid path to a directory."
