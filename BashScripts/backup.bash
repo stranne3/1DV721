@@ -37,13 +37,13 @@ function timer
 if [ -d "$backupfiles" ]; then
 
 	timestamp=$(date +"%Y%d%m_%H%M%S")
-	archive_file="$(basename $backupfiles)"_"$timestamp".tgz""
+	archive_file="$(basename "$backupfiles")"_"$timestamp".tgz""
 
 	if [ -f "$archive_file" ]; then
 		echo "'$archive_file' already exists."
 	
 	else
-		tar czf $destination/$archive_file $backupfiles
+		tar czf "$destination"/"$archive_file" "$backupfiles"
 	fi
 
 	##touch $destination/$backupfile | cp $backupfiles $destination/$archive_file
