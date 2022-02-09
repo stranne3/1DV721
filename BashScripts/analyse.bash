@@ -4,8 +4,8 @@
 #
 
 URL=$1
-echo $URL
-URLname=$(basename $URL)
+echo "$URL"
+URLname=$(basename "$URL")
 
 function usage
 {
@@ -20,41 +20,41 @@ function usage
 	Printf "%s\\n" "${txt[@]}"
 }
 
-wget -O newfile $URL
+wget -O newfile "$URL"
 
 file="/Users/viktorstranne/Documents/GitHub/1DV721/BashScripts/$URLname"
-type=$(file -b $file | awk '{print $1}')
-filesize=$(stat -f%z $file)
+type=$(file -b "$file" | awk '{print $1}')
+filesize=$(stat -f%z "$file")
 
-echo "Type: " $type
-echo "Filesize: " $filesize
+echo "Type: " "$type"
+echo "Filesize: " "$filesize"
 
 if [[ "$type" == "ASCII" ]]; then
 
     echo "Words: " 
-    wc -w $file
+    wc -w "$file"
 
     echo "Lines:"
-    wc -l $file
+    wc -l "$file"
 
     echo "Spaces:"
-    tr -cd ' ' < $file| wc -c
+    tr -cd ' ' < "$file"| wc -c
 
-    first=$(head -1 $file)
+    first=$(head -1 "$file")
     echo "First line: " "$first"
 
-    last=$(tail -1 $file)
+    last=$(tail -1 "$file")
     echo "Last line: " "$last"
 
 else
-    first=$(head -c 10 $file)
+    first=$(head -c 10 "$file")
     echo "First 10 bytes: " "$first"
 
-    last=$(tail -c 10 $file)
+    last=$(tail -c 10 "$file")
     echo "Last 10 bytes: " "$last"
 fi
 
-open -a safari $1
+open -a operagx "$1"
 
 while (($#))
 do

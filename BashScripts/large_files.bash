@@ -21,17 +21,17 @@ if [ -d "$path" ]; then
 
 # Skriv ut hur stora de 5 största filerna är.
 echo "Largest files in directory: "
-find $path -printf '%s %p\n' | sort -nr | head -5
+find "$path" -printf '%s %p\n' | sort -nr | head -5
 
 ###du -ahx $path | sort -n -r | head -5
 
 
 
 echo "Total size of the largets files: "
-find $path -type f -exec ls -l {} \; | awk '{sum += $5} END {print sum}' | sort -nr | head -5 
+find "$path" -type f -exec ls -l {} \; | awk '{sum += $5} END {print sum}' | sort -nr | head -5 
 
 echo "Total files scanned: "
-find $path -type f | wc -l
+find "$path" -type f | wc -l
 exit 0
 
 
