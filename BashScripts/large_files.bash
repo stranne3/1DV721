@@ -19,6 +19,7 @@ find $path -type f -exec ls -l {} \; | awk '{sum += $5} END {print sum}' | sort 
 
 echo "Total files scanned: "
 find $path -type f | wc -l
+exit 0
 
 
 
