@@ -1,8 +1,11 @@
 #!/bin/bash
+# Analyse the content of the URL declared in [Argument 1].
+# Viktor Stranne, vs222my
 #
 
 URL=$1
 echo $URL
+URLname=$(basename $URL)
 
 function usage
 {
@@ -19,13 +22,11 @@ function usage
 
 wget -O newfile $URL
 
-file="/Users/viktorstranne/Documents/GitHub/1DV721/BashScripts/newfile"
+file="/Users/viktorstranne/Documents/GitHub/1DV721/BashScripts/$URLname"
 type=$(file -b $file | awk '{print $1}')
 filesize=$(stat -f%z $file)
 
 echo "Type: " $type
-
-
 echo "Filesize: " $filesize
 
 if [[ "$type" == "ASCII" ]]; then
