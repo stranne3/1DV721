@@ -1,4 +1,5 @@
 #!/bin/bash
+# Viktor Stranne, vs222my
 #
 
 path="$1"
